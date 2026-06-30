@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name — Portfolio</title>
+  <title>Alexandre Hervé — Portfolio</title>
+  <meta name="description" content="Portfolio of Alexandre Hervé — AI / NLP engineer. LLMs, agentic systems, NLP, and hands-on hardware & game-dev projects.">
 
   <!-- Google Fonts — swap these to change the whole feel -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,8 +91,15 @@
 
     .hero .subtitle {
       font-size: 1.15rem;
-      max-width: 540px;
+      max-width: 560px;
       color: var(--color-text);
+    }
+
+    .hero .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
     }
 
     /* ===== NAV ===== */
@@ -117,25 +125,39 @@
     }
     nav a:hover { color: var(--color-accent); text-decoration: none; }
 
-    /* ===== PROJECT CARDS ===== */
-    .project {
+    /* ===== EXPERIENCE ===== */
+    .experience {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: 10px;
       padding: 28px;
       margin-bottom: 28px;
     }
+    .experience .exp-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .experience h2 { font-size: 1.35rem; margin-bottom: 2px; }
+    .experience .role { font-size: 0.95rem; color: var(--color-accent); font-weight: 500; }
+    .experience .period {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--color-text);
+      white-space: nowrap;
+    }
+    .experience .overview { font-size: 0.95rem; margin: 14px 0 6px; }
 
-    .project h2 { font-size: 1.35rem; }
-
-    .project .tags {
+    .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin: 14px 0 16px;
+      margin: 14px 0 4px;
     }
-
-    .project .tag {
+    .tag {
       font-size: 12px;
       font-weight: 500;
       padding: 3px 10px;
@@ -144,36 +166,29 @@
       color: var(--color-accent);
     }
 
-    .project p {
-      font-size: 0.95rem;
-      margin-bottom: 16px;
+    /* ===== PROJECT CARDS ===== */
+    .project {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 28px;
+      margin-bottom: 28px;
     }
+    .project h2 { font-size: 1.35rem; }
+    .project p { font-size: 0.95rem; margin-bottom: 16px; }
 
-    /* Media inside project cards */
-    .project .media {
-      margin: 20px 0;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .project .media iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: none;
-    }
-
-    .project .media img {
-      width: 100%;
-      display: block;
-    }
+    /* Media inside cards */
+    .media { margin: 20px 0; border-radius: 6px; overflow: hidden; }
+    .media video, .media img { width: 100%; display: block; }
 
     /* Image gallery grid */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 12px;
-      margin: 20px 0;
+      margin: 20px 0 4px;
     }
+    .gallery figure { margin: 0; }
     .gallery img {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -182,21 +197,104 @@
       transition: transform 0.2s ease;
     }
     .gallery img:hover { transform: scale(1.02); }
+    .gallery figcaption { font-size: 12px; color: #9a9da8; margin-top: 6px; }
 
     /* Links row inside cards */
-    .project .links {
+    .links {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
-      margin-top: 16px;
+      margin-top: 18px;
     }
-    .project .links a {
+    .links a {
       font-size: 14px;
       font-weight: 500;
       display: inline-flex;
       align-items: center;
       gap: 5px;
     }
+
+    /* ===== CAROUSEL (NCOP filter showcase) ===== */
+    .carousel { margin: 22px 0 6px; }
+    .carousel .frame {
+      position: relative;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0b0d13;
+    }
+    .carousel .slide {
+      display: none;
+      animation: fade 0.6s ease;
+    }
+    .carousel .slide.active { display: block; }
+    .carousel .slide img { width: 100%; display: block; border-radius: 0; }
+    @keyframes fade { from { opacity: 0.2; } to { opacity: 1; } }
+
+    .carousel .caption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+    .carousel .caption .filter {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+    .carousel .caption .desc { font-size: 13px; color: var(--color-text); }
+
+    .carousel .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .carousel button.nav-btn {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      color: var(--color-heading);
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .carousel button.nav-btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+    .carousel .dots { display: flex; gap: 8px; }
+    .carousel .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      border: none;
+      background: var(--color-border);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel .dot.active { background: var(--color-accent); transform: scale(1.25); }
+
+    /* ===== PAPER / RESEARCH CARD ===== */
+    .paper {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-accent);
+      border-radius: 10px;
+      padding: 28px;
+    }
+    .paper .paper-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--color-heading);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+    .paper .meta { font-size: 13px; color: #9a9da8; margin-bottom: 14px; }
+    .paper p { font-size: 0.95rem; }
 
     /* ===== ABOUT ===== */
     .about-grid {
@@ -225,10 +323,11 @@
     }
     footer .links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
 
-    /* ===== PDF LINK STYLING ===== */
+    /* ===== PDF / DOWNLOAD LINK STYLING ===== */
     .pdf-link::before { content: '📄 '; }
+    .dl-link::before  { content: '⤓ '; }
 
-    /* ===== UTILITY ===== */
+    /* ===== BUTTONS ===== */
     .btn {
       display: inline-block;
       padding: 10px 22px;
@@ -240,148 +339,335 @@
       transition: opacity 0.2s;
     }
     .btn:hover { opacity: 0.85; text-decoration: none; }
+    .btn.secondary {
+      background: transparent;
+      color: var(--color-heading);
+      border: 1px solid var(--color-border);
+    }
+    .btn.secondary:hover { border-color: var(--color-accent); color: var(--color-accent); opacity: 1; }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .gallery img { transition: none; }
+      .carousel .slide { animation: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ============================
-     NAV — add/remove links here
-     ============================ -->
+<!-- ============================ NAV ============================ -->
 <nav>
   <div class="container">
-    <a href="#work">Work</a>
+    <a href="#experience">Experience</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- ============================
-     HERO — your intro
-     ============================ -->
+<!-- ============================ HERO ============================ -->
 <header class="hero">
   <div class="container">
     <p class="section-label">Portfolio</p>
-    <h1>Hi, I'm Your Name</h1>
+    <h1>Alexandre Hervé</h1>
     <p class="subtitle">
-      A short line about what you do. Designer, developer, filmmaker —
-      whatever fits. Keep it to one or two sentences.
+      AI &amp; NLP engineer. I build with large language models and agentic systems,
+      apply NLP to real operational problems, and like getting my hands dirty —
+      from lasercutters built from scratch to indie game development.
     </p>
+    <div class="cta">
+      <!-- CV: open in a new tab to display, or download -->
+      <a class="btn" href="assets/CV.pdf" target="_blank" rel="noopener">View CV</a>
+      <a class="btn secondary dl-link" href="assets/CV.pdf" download>Download CV</a>
+    </div>
   </div>
 </header>
 
-<!-- ============================
-     WORK — copy a .project block to add more
-     ============================ -->
-<section id="work">
+<!-- ============================ EXPERIENCE ============================ -->
+<section id="experience">
   <div class="container">
-    <p class="section-label">Selected work</p>
+    <p class="section-label">Professional experience</p>
 
-    <!-- PROJECT 1 — with embedded video -->
-    <div class="project">
-      <h2>Project Title</h2>
+    <!-- EXPERIENCE 1 — Hexaforce / Thales -->
+    <div class="experience">
+      <div class="exp-head">
+        <div>
+          <h2>Thales — Hexaforce</h2>
+          <span class="role">LLM &amp; Agentic Systems Engineer (Internship)</span>
+        </div>
+        <!-- EDIT period -->
+        <span class="period">2024 – 2025</span>
+      </div>
+      <p class="overview">
+        Worked on the architecture and algorithms behind LLM-powered, agentic systems
+        for critical defense contexts — focusing on making large language models robust,
+        reliable, and rule-following by construction and by confinement. The work led to
+        an internal report and a research paper (see Research below).
+      </p>
       <div class="tags">
-        <span class="tag">Video</span>
-        <span class="tag">Motion Design</span>
+        <span class="tag">LLM</span>
+        <span class="tag">Agentic systems</span>
+        <span class="tag">Architecture</span>
+        <span class="tag">Algorithms</span>
+        <span class="tag">Critical systems</span>
       </div>
-      <p>Describe what this project is and what you did.
-         Two or three sentences is plenty.</p>
-
-      <!-- VIDEO EMBED: paste any YouTube/Vimeo embed URL -->
-      <div class="media">
-        <iframe
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-          allowfullscreen>
-        </iframe>
-      </div>
-
       <div class="links">
-        <a href="https://github.com/you/project" target="_blank">↗ GitHub</a>
-        <a href="https://example.com" target="_blank">↗ Live site</a>
-        <!-- PDF LINK: put your PDF in the same repo or link externally -->
-        <a class="pdf-link" href="assets/project-writeup.pdf" target="_blank">Case study (PDF)</a>
+        <a class="pdf-link" href="assets/hexaforce/report.pdf" target="_blank" rel="noopener">Internship report (PDF)</a>
+        <a class="pdf-link" href="assets/hexaforce/supervisor-recommendation.pdf" target="_blank" rel="noopener">Supervisor recommendation (PDF)</a>
       </div>
     </div>
 
-    <!-- PROJECT 2 — with image gallery -->
-    <div class="project">
-      <h2>Another Project</h2>
-      <div class="tags">
-        <span class="tag">Photography</span>
-        <span class="tag">Branding</span>
+    <!-- EXPERIENCE 2 — NCOP / Thales (with looping filter carousel) -->
+    <div class="experience">
+      <div class="exp-head">
+        <div>
+          <h2>Thales — NCOP</h2>
+          <span class="role">NLP Engineer (4th-year Internship)</span>
+        </div>
+        <!-- EDIT period -->
+        <span class="period">2023 – 2024</span>
       </div>
-      <p>Brief description of this project.</p>
+      <p class="overview">
+        Applied natural language processing to filter the NCOP (Common Operational Picture):
+        turning plain-language queries into live, filtered views of a tactical map. The
+        showcase below loops through the same map with different NLP-driven filters applied.
+      </p>
+      <div class="tags">
+        <span class="tag">NLP</span>
+        <span class="tag">Information filtering</span>
+        <span class="tag">Tactical mapping</span>
+        <span class="tag">Python</span>
+      </div>
 
-      <!-- IMAGE GALLERY: add/remove <img> tags -->
-      <div class="gallery">
-        <img src="https://picsum.photos/seed/a/600/450" alt="Project photo 1">
-        <img src="https://picsum.photos/seed/b/600/450" alt="Project photo 2">
-        <img src="https://picsum.photos/seed/c/600/450" alt="Project photo 3">
+      <!-- LOOPING FILTER CAROUSEL -->
+      <div class="carousel" id="ncop-carousel" aria-label="NCOP filtering showcase">
+        <div class="frame">
+          <div class="slide active">
+            <img src="assets/ncop/map-all-items.png" alt="NCOP map — all items, no filter">
+          </div>
+          <div class="slide">
+            <img src="assets/ncop/map-aviation-line.png" alt="NCOP map — aviation line filter">
+          </div>
+          <div class="slide">
+            <img src="assets/ncop/map-italian-infantry.png" alt="NCOP map — Italian infantry filter">
+          </div>
+          <div class="slide">
+            <img src="assets/ncop/map-hostile.png" alt="NCOP map — hostile units filter">
+          </div>
+          <div class="caption">
+            <span class="filter" id="ncop-filter">No filter — full picture</span>
+            <span class="desc" id="ncop-desc">Every tracked item displayed at once.</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="nav-btn" id="ncop-prev" aria-label="Previous filter">‹</button>
+          <div class="dots" id="ncop-dots"></div>
+          <button class="nav-btn" id="ncop-next" aria-label="Next filter">›</button>
+        </div>
       </div>
 
       <div class="links">
-        <a class="pdf-link" href="assets/brand-guidelines.pdf" target="_blank">Brand guidelines (PDF)</a>
-      </div>
-    </div>
-
-    <!-- PROJECT 3 — single image -->
-    <div class="project">
-      <h2>One More Project</h2>
-      <div class="tags">
-        <span class="tag">Web Dev</span>
-      </div>
-      <p>Description goes here.</p>
-
-      <div class="media">
-        <img src="https://picsum.photos/seed/d/800/450" alt="Project screenshot">
-      </div>
-
-      <div class="links">
-        <a href="https://github.com/you/project" target="_blank">↗ Source code</a>
+        <a class="pdf-link" href="assets/ncop/report.pdf" target="_blank" rel="noopener">Internship report (PDF, FR)</a>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ============================
-     ABOUT
-     ============================ -->
+<!-- ============================ RESEARCH ============================ -->
+<section id="research">
+  <div class="container">
+    <p class="section-label">Research</p>
+    <div class="paper">
+      <p class="paper-title">
+        Using Large Language Models in Critical Contexts: Robustness, Reliability,
+        and Rule-Following by Construction and by Confinement
+      </p>
+      <p class="meta">Research paper · Thales — Hexaforce</p>
+      <p>
+        A study of how to deploy large language models safely in critical contexts.
+        It explores making model behavior trustworthy <em>by construction</em> and
+        <em>by confinement</em>, so that robustness, reliability, and rule-following
+        are guaranteed by the surrounding system rather than hoped for from the model alone.
+      </p>
+      <div class="links">
+        <a class="pdf-link" href="assets/hexaforce/llm-critical-contexts-paper.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
+        <a class="dl-link" href="assets/hexaforce/llm-critical-contexts-paper.pdf" download>Download</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROJECTS ============================ -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Personal projects</p>
+
+    <!-- PROJECT — Video game dev -->
+    <div class="project">
+      <h2>Game development</h2>
+      <div class="tags">
+        <span class="tag">Unity</span>
+        <span class="tag">Game jam</span>
+        <span class="tag">3ds Max</span>
+        <span class="tag">3D modeling</span>
+      </div>
+      <p>
+        A shoot'em up built during a Unity game jam, plus dungeon environments modeled
+        from scratch in 3ds Max. Video below shows the SHMUP gameplay; the gallery shows
+        the same dungeon model textured, in wireframe, and untextured.
+      </p>
+
+      <div class="media">
+        <video controls preload="metadata" playsinline poster="assets/games/dungeon-textured.jpg">
+          <source src="assets/games/schmup-gameplay.mp4" type="video/mp4">
+          Your browser doesn't support embedded video —
+          <a href="assets/games/schmup-gameplay.mp4">download the clip</a>.
+        </video>
+      </div>
+
+      <div class="gallery">
+        <figure>
+          <img src="assets/games/dungeon-textured.jpg" alt="Dungeon model, textured">
+          <figcaption>Dungeon — textured</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/games/dungeon-wireframe.jpg" alt="Dungeon model, wireframe">
+          <figcaption>Dungeon — wireframe</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/games/dungeon-flat.jpg" alt="Dungeon model, untextured">
+          <figcaption>Dungeon — untextured</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- PROJECT — IRL / hardware -->
+    <div class="project">
+      <h2>DIY laser cutter</h2>
+      <div class="tags">
+        <span class="tag">Hardware</span>
+        <span class="tag">Electronics</span>
+        <span class="tag">Fabrication</span>
+      </div>
+      <p>
+        A laser cutter built from scratch out of parts ordered online — assembled,
+        wired, and calibrated by hand. The last image shows an example of what it cuts.
+      </p>
+
+      <div class="gallery">
+        <figure>
+          <img src="assets/irl/laser-cutter-built-1.jpg" alt="DIY laser cutter, built from scratch">
+          <figcaption>Built from scratch</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/irl/laser-cutter-built-2.jpg" alt="DIY laser cutter, detail">
+          <figcaption>Assembly detail</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/irl/laser-cutting-example.jpg" alt="Example of a laser-cut piece">
+          <figcaption>Example cut</figcaption>
+        </figure>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
 <section id="about">
   <div class="container">
     <p class="section-label">About</p>
     <div class="about-grid">
-      <img src="https://picsum.photos/seed/me/400/400" alt="Your photo">
+      <!-- Drop a photo at assets/portrait.jpg, or leave this placeholder -->
+      <img src="https://picsum.photos/seed/alexandre/400/400" alt="Portrait of Alexandre Hervé">
       <div>
         <h2>A bit about me</h2>
-        <p>Write a paragraph or two about yourself, your background,
-           and what you're looking for. Keep it human.</p>
+        <p>
+          I'm Alexandre, an engineer working at the intersection of AI/NLP and real systems.
+          I've built LLM-based agentic architectures and NLP filtering tools for critical
+          defense applications at Thales, and outside of work I like building things end to
+          end — electronics, fabrication, and games.
+        </p>
         <p style="margin-top:16px">
-          <a class="btn" href="assets/resume.pdf" target="_blank">Download résumé (PDF)</a>
+          <a class="btn" href="assets/CV.pdf" target="_blank" rel="noopener">View CV</a>
+          <a class="btn secondary dl-link" href="assets/CV.pdf" download>Download CV</a>
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================
-     CONTACT / FOOTER
-     ============================ -->
+<!-- ============================ CONTACT / FOOTER ============================ -->
 <footer id="contact">
   <div class="container">
     <div class="links">
-      <a href="mailto:you@email.com">Email</a>
-      <a href="https://github.com/you" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/you" target="_blank">LinkedIn</a>
+      <a href="mailto:alexandreherve92@gmail.com">Email</a>
+      <a href="https://github.com/Alexandre-RV" target="_blank" rel="noopener">GitHub</a>
+      <!-- EDIT or remove your LinkedIn -->
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <p>&copy; 2026 Your Name</p>
+    <p>&copy; 2026 Alexandre Hervé</p>
   </div>
 </footer>
+
+<!-- ============================ CAROUSEL SCRIPT ============================ -->
+<script>
+  (function () {
+    var slides = [
+      { filter: "No filter — full picture", desc: "Every tracked item displayed at once." },
+      { filter: "Aviation line",            desc: "Only the aviation line is surfaced from the query." },
+      { filter: "Italian infantry",         desc: "Filtered to Italian infantry units." },
+      { filter: "Hostile units",            desc: "Filtered to items flagged as hostile." }
+    ];
+
+    var root      = document.getElementById('ncop-carousel');
+    if (!root) return;
+    var slideEls  = root.querySelectorAll('.slide');
+    var filterEl  = document.getElementById('ncop-filter');
+    var descEl    = document.getElementById('ncop-desc');
+    var dotsWrap  = document.getElementById('ncop-dots');
+    var current   = 0;
+    var timer     = null;
+    var DELAY     = 3500;
+
+    // Build dots
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Show filter ' + (i + 1));
+      dot.addEventListener('click', function () { go(i); restart(); });
+      dotsWrap.appendChild(dot);
+    });
+    var dotEls = dotsWrap.querySelectorAll('.dot');
+
+    function go(i) {
+      current = (i + slides.length) % slides.length;
+      slideEls.forEach(function (s, idx) { s.classList.toggle('active', idx === current); });
+      dotEls.forEach(function (d, idx) { d.classList.toggle('active', idx === current); });
+      filterEl.textContent = slides[current].filter;
+      descEl.textContent   = slides[current].desc;
+    }
+    function next() { go(current + 1); }
+    function prev() { go(current - 1); }
+
+    function start() {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      timer = setInterval(next, DELAY);
+    }
+    function stop()    { if (timer) { clearInterval(timer); timer = null; } }
+    function restart() { stop(); start(); }
+
+    document.getElementById('ncop-next').addEventListener('click', function () { next(); restart(); });
+    document.getElementById('ncop-prev').addEventListener('click', function () { prev(); restart(); });
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+
+    start();
+  })();
+</script>
 
 </body>
 </html>
