@@ -197,7 +197,69 @@
       transition: transform 0.2s ease;
     }
     .gallery img:hover { transform: scale(1.02); }
+    .gallery img { cursor: zoom-in; }
     .gallery figcaption { font-size: 12px; color: #9a9da8; margin-top: 6px; }
+
+    /* ===== LIGHTBOX (click a gallery image to enlarge) ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.9);
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 92vh;
+      border-radius: 6px;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+      cursor: default;
+    }
+    .lightbox .lb-close {
+      position: absolute;
+      top: 16px;
+      right: 22px;
+      font-size: 34px;
+      line-height: 1;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .lightbox .lb-cap {
+      position: absolute;
+      bottom: 18px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 13px;
+      color: #d6d8df;
+    }
+
+    /* ===== INLINE PDF EMBED ===== */
+    .pdf-embed { margin-top: 20px; }
+    .pdf-embed .embed-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 10px;
+    }
+    .pdf-embed object,
+    .pdf-embed iframe {
+      width: 100%;
+      height: 540px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      background: #fff;
+    }
+    .pdf-embed .embed-fallback { font-size: 13px; margin-top: 8px; }
 
     /* Links row inside cards */
     .links {
@@ -414,7 +476,18 @@
       </div>
       <div class="links">
         <a class="pdf-link" href="assets/hexaforce/report.pdf" target="_blank" rel="noopener">Internship report (PDF)</a>
-        <a class="pdf-link" href="assets/hexaforce/supervisor-recommendation.pdf" target="_blank" rel="noopener">Supervisor recommendation (PDF)</a>
+      </div>
+
+      <!-- Supervisor recommendation — always displayed inline -->
+      <div class="pdf-embed">
+        <p class="embed-label">Supervisor recommendation</p>
+        <object data="assets/hexaforce/supervisor-recommendation.pdf#view=FitH" type="application/pdf">
+          <iframe src="assets/hexaforce/supervisor-recommendation.pdf#view=FitH" title="Supervisor recommendation"></iframe>
+        </object>
+        <p class="embed-fallback">
+          Can't see it?
+          <a class="pdf-link" href="assets/hexaforce/supervisor-recommendation.pdf" target="_blank" rel="noopener">Open the recommendation (PDF)</a>
+        </p>
       </div>
     </div>
 
@@ -612,6 +685,13 @@
   </div>
 </footer>
 
+<!-- ============================ LIGHTBOX ============================ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
 <!-- ============================ CAROUSEL SCRIPT ============================ -->
 <script>
   (function () {
@@ -666,6 +746,39 @@
     root.addEventListener('mouseleave', start);
 
     start();
+  })();
+
+  // ===== Lightbox: click any gallery image to enlarge =====
+  (function () {
+    var box   = document.getElementById('lightbox');
+    if (!box) return;
+    var imgEl = document.getElementById('lb-img');
+    var capEl = document.getElementById('lb-cap');
+
+    function open(src, alt) {
+      imgEl.src = src;
+      imgEl.alt = alt || '';
+      capEl.textContent = alt || '';
+      box.classList.add('open');
+      box.setAttribute('aria-hidden', 'false');
+    }
+    function close() {
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden', 'true');
+      imgEl.src = '';
+    }
+
+    document.querySelectorAll('.gallery img').forEach(function (img) {
+      img.addEventListener('click', function () { open(img.src, img.alt); });
+    });
+
+    document.getElementById('lb-close').addEventListener('click', close);
+    box.addEventListener('click', function (e) {
+      if (e.target !== imgEl) close();           // click backdrop closes
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && box.classList.contains('open')) close();
+    });
   })();
 </script>
 
