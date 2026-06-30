@@ -34,7 +34,7 @@
       background: var(--color-bg);
       color: var(--color-text);
       line-height: 1.7;
-      font-size: 16px;
+      font-size: 17px;
     }
 
     a { color: var(--color-accent); text-decoration: none; }
@@ -44,9 +44,9 @@
 
     /* ===== LAYOUT ===== */
     .container {
-      max-width: 860px;
+      max-width: 1160px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 40px;
     }
 
     section {
@@ -261,6 +261,40 @@
     }
     .pdf-embed .embed-fallback { font-size: 13px; margin-top: 8px; }
 
+    /* ===== LARGE DOCUMENT PREVIEW (e.g. recommendation) ===== */
+    .doc-preview { margin: 24px 0 6px; }
+    .doc-preview img {
+      width: 100%;
+      max-width: 820px;
+      display: block;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      cursor: zoom-in;
+      transition: transform 0.2s ease;
+    }
+    .doc-preview img:hover { transform: scale(1.01); }
+    .doc-preview figcaption { font-size: 12px; color: #9a9da8; margin-top: 8px; }
+
+    /* ===== CERTIFICATIONS ===== */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .cert {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 24px 26px;
+    }
+    .cert h2 { font-size: 1.2rem; margin-bottom: 4px; }
+    .cert .cert-issuer {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-accent);
+    }
+    .cert p { font-size: 0.95rem; margin: 12px 0 0; }
+
     /* Links row inside cards */
     .links {
       display: flex;
@@ -422,6 +456,7 @@
   <div class="container">
     <a href="#experience">Experience</a>
     <a href="#research">Research</a>
+    <a href="#certifications">Certifications</a>
     <a href="#projects">Projects</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
@@ -474,13 +509,11 @@
         <span class="tag">Algorithms</span>
         <span class="tag">Critical systems</span>
       </div>
-      <!-- Supervisor recommendation — image preview + full PDF link -->
-      <div class="gallery">
-        <figure>
-          <img src="assets/hexaforce/recommendation.png" alt="Supervisor recommendation from Thales">
-          <figcaption>Supervisor recommendation</figcaption>
-        </figure>
-      </div>
+      <!-- Supervisor recommendation — large image preview + full PDF link -->
+      <figure class="doc-preview">
+        <img src="assets/hexaforce/recommendation.png" alt="Supervisor recommendation from Thales">
+        <figcaption>Supervisor recommendation — click to enlarge</figcaption>
+      </figure>
 
       <div class="links">
         <a class="pdf-link" href="assets/hexaforce/report.pdf" target="_blank" rel="noopener">Internship report (PDF)</a>
@@ -565,6 +598,32 @@
         <a class="pdf-link" href="assets/hexaforce/llm-critical-contexts-paper.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
         <a class="dl-link" href="assets/hexaforce/llm-critical-contexts-paper.pdf" download>Download</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CERTIFICATIONS ============================ -->
+<section id="certifications">
+  <div class="container">
+    <p class="section-label">Certifications</p>
+    <div class="cert-grid">
+
+      <!-- CERT — copy a .cert block to add more. EDIT the text/links. -->
+      <div class="cert">
+        <h2>Certification name</h2>
+        <span class="cert-issuer">Issuer · 20XX</span>
+        <p>One line on what it covers. Add a credential link below if you have one.</p>
+        <div class="links">
+          <a href="#" target="_blank" rel="noopener">↗ View credential</a>
+        </div>
+      </div>
+
+      <div class="cert">
+        <h2>Certification name</h2>
+        <span class="cert-issuer">Issuer · 20XX</span>
+        <p>One line on what it covers.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -765,7 +824,7 @@
       imgEl.src = '';
     }
 
-    document.querySelectorAll('.gallery img').forEach(function (img) {
+    document.querySelectorAll('.gallery img, .doc-preview img').forEach(function (img) {
       img.addEventListener('click', function () { open(img.src, img.alt); });
     });
 
