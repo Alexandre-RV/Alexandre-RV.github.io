@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name — Portfolio</title>
+
+  <!-- Google Fonts — swap these to change the whole feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== EDIT THESE to re-skin the whole site ===== */
+    :root {
+      --color-bg:       #0f1117;
+      --color-surface:  #1a1c25;
+      --color-border:   #2a2d3a;
+      --color-text:     #c8cad0;
+      --color-heading:  #edeef1;
+      --color-accent:   #7b8ff5;
+      --color-accent-soft: rgba(123, 143, 245, 0.12);
+      --font-display:   'Playfair Display', Georgia, serif;
+      --font-body:      'Inter', system-ui, sans-serif;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    img, video, iframe { max-width: 100%; border-radius: 6px; }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--color-heading);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--color-heading);
+      margin-bottom: 12px;
+    }
+
+    p + p { margin-top: 12px; }
+
+    /* ===== HEADER / HERO ===== */
+    .hero {
+      padding: 100px 0 72px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      max-width: 540px;
+      color: var(--color-text);
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 14px 0;
+    }
+    nav .container {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text);
+      letter-spacing: 0.02em;
+    }
+    nav a:hover { color: var(--color-accent); text-decoration: none; }
+
+    /* ===== PROJECT CARDS ===== */
+    .project {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+
+    .project h2 { font-size: 1.35rem; }
+
+    .project .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 16px;
+    }
+
+    .project .tag {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--color-accent-soft);
+      color: var(--color-accent);
+    }
+
+    .project p {
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    /* Media inside project cards */
+    .project .media {
+      margin: 20px 0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .project .media iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+    }
+
+    .project .media img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Image gallery grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 6px;
+      transition: transform 0.2s ease;
+    }
+    .gallery img:hover { transform: scale(1.02); }
+
+    /* Links row inside cards */
+    .project .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .project .links a {
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .about-grid img {
+      width: 100%;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    @media (max-width: 600px) {
+      .about-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+      .about-grid img { width: 140px; }
+    }
+
+    /* ===== CONTACT / FOOTER ===== */
+    footer {
+      padding: 48px 0;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+    footer .links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
+
+    /* ===== PDF LINK STYLING ===== */
+    .pdf-link::before { content: '📄 '; }
+
+    /* ===== UTILITY ===== */
+    .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      background: var(--color-accent);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; text-decoration: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .gallery img { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================
+     NAV — add/remove links here
+     ============================ -->
+<nav>
+  <div class="container">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ============================
+     HERO — your intro
+     ============================ -->
+<header class="hero">
+  <div class="container">
+    <p class="section-label">Portfolio</p>
+    <h1>Hi, I'm Your Name</h1>
+    <p class="subtitle">
+      A short line about what you do. Designer, developer, filmmaker —
+      whatever fits. Keep it to one or two sentences.
+    </p>
+  </div>
+</header>
+
+<!-- ============================
+     WORK — copy a .project block to add more
+     ============================ -->
+<section id="work">
+  <div class="container">
+    <p class="section-label">Selected work</p>
+
+    <!-- PROJECT 1 — with embedded video -->
+    <div class="project">
+      <h2>Project Title</h2>
+      <div class="tags">
+        <span class="tag">Video</span>
+        <span class="tag">Motion Design</span>
+      </div>
+      <p>Describe what this project is and what you did.
+         Two or three sentences is plenty.</p>
+
+      <!-- VIDEO EMBED: paste any YouTube/Vimeo embed URL -->
+      <div class="media">
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/you/project" target="_blank">↗ GitHub</a>
+        <a href="https://example.com" target="_blank">↗ Live site</a>
+        <!-- PDF LINK: put your PDF in the same repo or link externally -->
+        <a class="pdf-link" href="assets/project-writeup.pdf" target="_blank">Case study (PDF)</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 — with image gallery -->
+    <div class="project">
+      <h2>Another Project</h2>
+      <div class="tags">
+        <span class="tag">Photography</span>
+        <span class="tag">Branding</span>
+      </div>
+      <p>Brief description of this project.</p>
+
+      <!-- IMAGE GALLERY: add/remove <img> tags -->
+      <div class="gallery">
+        <img src="https://picsum.photos/seed/a/600/450" alt="Project photo 1">
+        <img src="https://picsum.photos/seed/b/600/450" alt="Project photo 2">
+        <img src="https://picsum.photos/seed/c/600/450" alt="Project photo 3">
+      </div>
+
+      <div class="links">
+        <a class="pdf-link" href="assets/brand-guidelines.pdf" target="_blank">Brand guidelines (PDF)</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 — single image -->
+    <div class="project">
+      <h2>One More Project</h2>
+      <div class="tags">
+        <span class="tag">Web Dev</span>
+      </div>
+      <p>Description goes here.</p>
+
+      <div class="media">
+        <img src="https://picsum.photos/seed/d/800/450" alt="Project screenshot">
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/you/project" target="_blank">↗ Source code</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================
+     ABOUT
+     ============================ -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <img src="https://picsum.photos/seed/me/400/400" alt="Your photo">
+      <div>
+        <h2>A bit about me</h2>
+        <p>Write a paragraph or two about yourself, your background,
+           and what you're looking for. Keep it human.</p>
+        <p style="margin-top:16px">
+          <a class="btn" href="assets/resume.pdf" target="_blank">Download résumé (PDF)</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     CONTACT / FOOTER
+     ============================ -->
+<footer id="contact">
+  <div class="container">
+    <div class="links">
+      <a href="mailto:you@email.com">Email</a>
+      <a href="https://github.com/you" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/you" target="_blank">LinkedIn</a>
+    </div>
+    <p>&copy; 2026 Your Name</p>
+  </div>
+</footer>
+
+</body>
+</html>
