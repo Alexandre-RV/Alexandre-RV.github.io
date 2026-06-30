@@ -305,8 +305,35 @@
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: 10px;
-      padding: 24px 26px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
+    .cert .cert-img {
+      margin: 0;
+      background: #0b0d13;
+      border-bottom: 1px solid var(--color-border);
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cert .cert-img img {
+      width: 100%;
+      height: 230px;
+      object-fit: contain;
+      display: block;
+      cursor: zoom-in;
+    }
+    .cert .cert-img.placeholder::after {
+      content: attr(data-missing);
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      padding: 28px 20px;
+      line-height: 1.5;
+    }
+    .cert .cert-body { padding: 20px 24px 24px; }
     .cert h2 { font-size: 1.2rem; margin-bottom: 4px; }
     .cert .cert-issuer {
       font-size: 13px;
@@ -314,6 +341,7 @@
       color: var(--color-accent);
     }
     .cert p { font-size: 0.95rem; margin: 12px 0 0; }
+    .cert .links { margin-top: 14px; }
 
     /* Links row inside cards */
     .links {
@@ -660,20 +688,30 @@
     <p class="section-label">Certifications</p>
     <div class="cert-grid">
 
-      <!-- CERT — copy a .cert block to add more. EDIT the text/links. -->
+      <!-- Design Thinker — save the certificate image to assets/certs/design-thinker.png -->
       <div class="cert">
-        <h2>Certification name</h2>
-        <span class="cert-issuer">Issuer · 20XX</span>
-        <p>One line on what it covers. Add a credential link below if you have one.</p>
-        <div class="links">
-          <a href="#" target="_blank" rel="noopener">↗ View credential</a>
+        <figure class="cert-img" data-missing="Add the certificate image at assets/certs/design-thinker.png">
+          <img src="assets/certs/design-thinker.png" alt="Design Thinker certification"
+               onerror="this.style.display='none'; this.parentNode.classList.add('placeholder');">
+        </figure>
+        <div class="cert-body">
+          <h2>Design Thinker</h2>
+          <span class="cert-issuer">D+Thinking Academy · De Vinci Higher Education · Nov 2022</span>
+          <p>Certified in design-thinking methodology — framing problems, ideation, and
+             human-centered sprints.</p>
         </div>
       </div>
 
+      <!-- TOEFL ITP -->
       <div class="cert">
-        <h2>Certification name</h2>
-        <span class="cert-issuer">Issuer · 20XX</span>
-        <p>One line on what it covers.</p>
+        <figure class="cert-img">
+          <img src="assets/certs/toefl-itp.png" alt="TOEFL ITP official score report">
+        </figure>
+        <div class="cert-body">
+          <h2>TOEFL ITP — Level 1</h2>
+          <span class="cert-issuer">ETS · Dec 2022 · Score 670/677 · CEFR C1</span>
+          <p>Official English proficiency score report. Click the certificate to enlarge.</p>
+        </div>
       </div>
 
     </div>
@@ -876,7 +914,7 @@
       imgEl.src = '';
     }
 
-    document.querySelectorAll('.gallery img, .doc-preview img').forEach(function (img) {
+    document.querySelectorAll('.gallery img, .doc-preview img, .cert-img img').forEach(function (img) {
       img.addEventListener('click', function () { open(img.src, img.alt); });
     });
 
