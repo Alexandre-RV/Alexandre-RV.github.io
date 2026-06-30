@@ -181,6 +181,26 @@
     .media { margin: 20px 0; border-radius: 6px; overflow: hidden; }
     .media video, .media img { width: 100%; display: block; }
 
+    /* Captioned video figure */
+    .vid { margin: 20px 0; }
+    .vid video {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      background: #0b0d13;
+    }
+    .vid figcaption { font-size: 12px; color: #9a9da8; margin-top: 6px; }
+
+    .media-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin: 22px 0 4px;
+    }
+
     /* Image gallery grid */
     .gallery {
       display: grid;
@@ -509,6 +529,38 @@
         <span class="tag">Algorithms</span>
         <span class="tag">Critical systems</span>
       </div>
+      <!-- Dashboard / workbench showcase -->
+      <p class="media-label">Dashboard &amp; workbench</p>
+
+      <figure class="vid">
+        <video controls preload="metadata" playsinline>
+          <source src="assets/hexaforce/main-pipeline-overview.webm" type="video/webm">
+          Your browser can't play this video —
+          <a href="assets/hexaforce/main-pipeline-overview.webm">download it</a>.
+        </video>
+        <figcaption>Main pipeline overview</figcaption>
+      </figure>
+
+      <figure class="vid">
+        <video controls preload="metadata" playsinline>
+          <source src="assets/hexaforce/turn-loop-overview.webm" type="video/webm">
+          Your browser can't play this video —
+          <a href="assets/hexaforce/turn-loop-overview.webm">download it</a>.
+        </video>
+        <figcaption>Turn loop overview — hour-by-hour breakdown</figcaption>
+      </figure>
+
+      <div class="gallery">
+        <figure>
+          <img src="assets/hexaforce/comparison-window.png" alt="Comparison window of the Hexaforce workbench">
+          <figcaption>Comparison window</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/hexaforce/evaluator-window.png" alt="Evaluator window of the Hexaforce workbench">
+          <figcaption>Evaluator window</figcaption>
+        </figure>
+      </div>
+
       <!-- Supervisor recommendation — large image preview + full PDF link -->
       <figure class="doc-preview">
         <img src="assets/hexaforce/recommendation.png" alt="Supervisor recommendation from Thales">
