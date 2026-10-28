@@ -534,7 +534,73 @@
   <div class="container">
     <p class="section-label">Professional experience</p>
 
-    <!-- EXPERIENCE 1 — Hexaforce / Thales -->
+    <!-- EXPERIENCE 1 — Ship detection / Hexaforce / Thales (most recent) -->
+    <div class="experience">
+      <div class="exp-head">
+        <div>
+          <h2>Thales — Hexaforce</h2>
+          <span class="role">AI Engineer — Ship Detection (Contractor)</span>
+        </div>
+        <!-- EDIT period -->
+        <span class="period">2026</span>
+      </div>
+      <p style="font-size:1rem; font-weight:600; color: var(--color-heading); margin: 12px 0 2px;">
+        Maritime surveillance module for Hexaforce, Thales' C2 (command &amp; control) software suite
+      </p>
+      <p class="overview">
+        Designed and tuned a ship-detection pipeline over Sentinel-1 SAR satellite imagery:
+        a deep-learning detector for vessel candidates, followed by multi-pass static-clutter
+        filtering, coastline- and port-aware false-positive suppression, and oriented hull-shape
+        fitting to estimate each vessel's size and heading directly from its radar backscatter.
+        Evaluated across open sea and several European coastal areas.
+      </p>
+      <div class="tags">
+        <span class="tag">Computer Vision</span>
+        <span class="tag">SAR / Remote Sensing</span>
+        <span class="tag">C2 Systems</span>
+        <span class="tag">Signal Processing</span>
+        <span class="tag">C++ / Python</span>
+      </div>
+
+      <!-- Detection results across coastal areas -->
+      <p class="media-label">Detections — clean coastal passes</p>
+      <div class="gallery">
+        <figure>
+          <img src="assets/shipdet/marseille.jpg" alt="Ship detections off Marseille, Sentinel-1 SAR">
+          <figcaption>Marseille roadstead — 6 ships detected</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/shipdet/lehavre.jpg" alt="Ship detections off Le Havre, Sentinel-1 SAR">
+          <figcaption>Le Havre approach — 14 ships detected</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/shipdet/brest.jpg" alt="Ship detections off Brest, Sentinel-1 SAR">
+          <figcaption>Brest roadstead</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/shipdet/bonifacio.jpg" alt="Ship detections near Bonifacio, Sentinel-1 SAR">
+          <figcaption>Bonifacio strait</figcaption>
+        </figure>
+      </div>
+
+      <!-- Processing step: land/clutter masking -->
+      <p class="media-label">Processing — coastline &amp; static-clutter masking</p>
+      <figure class="doc-preview">
+        <img src="assets/shipdet/landmask-clutter.jpg" alt="Coastline and static-clutter mask used to suppress port false positives, Marseille">
+        <figcaption>Land mask (red) and multi-pass static-clutter points, used to suppress false
+          positives from port infrastructure while leaving open-water ships untouched — click to enlarge</figcaption>
+      </figure>
+
+      <!-- Oriented hull-shape fitting -->
+      <p class="media-label">Oriented hull-shape fitting</p>
+      <figure class="doc-preview">
+        <img src="assets/shipdet/oriented-hull-sheet.jpg" alt="Oriented bounding boxes fitted to individual ship detections from SAR backscatter">
+        <figcaption>Per-detection oriented box fitted to the radar backscatter blob of each ship,
+          used to estimate length, width, and heading — click to enlarge</figcaption>
+      </figure>
+    </div>
+
+    <!-- EXPERIENCE 2 — Hexaforce LLM / Thales -->
     <div class="experience">
       <div class="exp-head">
         <div>
@@ -544,6 +610,10 @@
         <!-- EDIT period -->
         <span class="period">2026</span>
       </div>
+      <p style="font-size:1rem; font-weight:600; color: var(--color-heading); margin: 12px 0 2px;">
+        Course-of-action generation, doctrine-constrained LLM behavior, chronological-matrix
+        planning &amp; wargaming support
+      </p>
       <p class="overview">
         Worked on the architecture and algorithms behind LLM-powered, agentic systems
         for critical defense contexts — focusing on making large language models robust,
@@ -601,7 +671,7 @@
       </div>
     </div>
 
-    <!-- EXPERIENCE 2 — NCOP / Thales (with looping filter carousel) -->
+    <!-- EXPERIENCE 3 — NCOP / Thales (with looping filter carousel) -->
     <div class="experience">
       <div class="exp-head">
         <div>
@@ -653,69 +723,6 @@
       <div class="links">
         <a class="pdf-link" href="assets/ncop/report.pdf" target="_blank" rel="noopener">Internship report (PDF, FR)</a>
       </div>
-    </div>
-
-    <!-- EXPERIENCE 3 — Ship detection / Thales -->
-    <div class="experience">
-      <div class="exp-head">
-        <div>
-          <h2>Thales — Ship Detection</h2>
-          <span class="role">Computer Vision Engineer — Maritime Surveillance (SAR)</span>
-        </div>
-        <!-- EDIT period -->
-        <span class="period">2026</span>
-      </div>
-      <p class="overview">
-        Built and tuned a ship-detection pipeline over Sentinel-1 SAR satellite imagery:
-        a deep-learning detector for vessel candidates, followed by multi-pass static-clutter
-        filtering, coastline- and port-aware false-positive suppression, and oriented hull-shape
-        fitting to estimate each vessel's size and heading directly from its radar backscatter.
-        Evaluated across open sea and several European coastal areas.
-      </p>
-      <div class="tags">
-        <span class="tag">Computer Vision</span>
-        <span class="tag">SAR / Remote Sensing</span>
-        <span class="tag">Sentinel-1</span>
-        <span class="tag">Signal Processing</span>
-        <span class="tag">C++ / Python</span>
-      </div>
-
-      <!-- Detection results across coastal areas -->
-      <p class="media-label">Detections — clean coastal passes</p>
-      <div class="gallery">
-        <figure>
-          <img src="assets/shipdet/marseille.jpg" alt="Ship detections off Marseille, Sentinel-1 SAR">
-          <figcaption>Marseille roadstead — 6 ships detected</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/shipdet/lehavre.jpg" alt="Ship detections off Le Havre, Sentinel-1 SAR">
-          <figcaption>Le Havre approach — 14 ships detected</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/shipdet/brest.jpg" alt="Ship detections off Brest, Sentinel-1 SAR">
-          <figcaption>Brest roadstead</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/shipdet/bonifacio.jpg" alt="Ship detections near Bonifacio, Sentinel-1 SAR">
-          <figcaption>Bonifacio strait</figcaption>
-        </figure>
-      </div>
-
-      <!-- Processing step: land/clutter masking -->
-      <p class="media-label">Processing — coastline &amp; static-clutter masking</p>
-      <figure class="doc-preview">
-        <img src="assets/shipdet/landmask-clutter.jpg" alt="Coastline and static-clutter mask used to suppress port false positives, Marseille">
-        <figcaption>Land mask (red) and multi-pass static-clutter points, used to suppress false
-          positives from port infrastructure while leaving open-water ships untouched — click to enlarge</figcaption>
-      </figure>
-
-      <!-- Oriented hull-shape fitting -->
-      <p class="media-label">Oriented hull-shape fitting</p>
-      <figure class="doc-preview">
-        <img src="assets/shipdet/oriented-hull-sheet.jpg" alt="Oriented bounding boxes fitted to individual ship detections from SAR backscatter">
-        <figcaption>Per-detection oriented box fitted to the radar backscatter blob of each ship,
-          used to estimate length, width, and heading — click to enlarge</figcaption>
-      </figure>
     </div>
 
   </div>
